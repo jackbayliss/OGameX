@@ -66,10 +66,7 @@ RUN if [ ! -f /var/www/.env ]; then \
 fi
 
 # Set write permissions for required directories
-RUN chown -R www-data:www-data \
-    /var/www/storage \
-    /var/www/bootstrap/cache \
-    /var/www/rust
+RUN chown -R www-data:www-data /var/www
 
 # Copy entry point, convert line endings and set permissions
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint
