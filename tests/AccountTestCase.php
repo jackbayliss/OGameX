@@ -77,6 +77,10 @@ abstract class AccountTestCase extends TestCase
         // Set default server settings for all tests.
         $settingsService = resolve(SettingsService::class);
         $settingsService->set('economy_speed', 8);
+        // Establish a full speed baseline so settings mutated by earlier tests can't leak
+        // into this one. Without this, e.g. ResearchQueueTest sets research_speed=2 which
+        // then changes timing in unrelated tests like VacationModeTest (see #1021).
+        $settingsService->set('research_speed', 1);
 
         // Set amount of planets to be created for the user because planet switching
         // is a part of the test suite.
@@ -278,6 +282,7 @@ abstract class AccountTestCase extends TestCase
             ->where('galaxy', $this->planetService->getPlanetCoordinates()->galaxy)
             ->where('galaxy', '<=', $maxGalaxies)
             ->where('planet_type', PlanetType::Planet)
+            ->where('destroyed', 0)
             ->whereBetween('system', [$this->planetService->getPlanetCoordinates()->system - 15, $this->planetService->getPlanetCoordinates()->system + 15])
             ->whereNotIn('user_id', $this->getAdminUserIds())
             ->inRandomOrder()
@@ -292,6 +297,7 @@ abstract class AccountTestCase extends TestCase
                 ->where('galaxy', $this->planetService->getPlanetCoordinates()->galaxy)
                 ->where('galaxy', '<=', $maxGalaxies)
                 ->where('planet_type', PlanetType::Planet)
+                ->where('destroyed', 0)
                 ->whereBetween('system', [$this->planetService->getPlanetCoordinates()->system - 15, $this->planetService->getPlanetCoordinates()->system + 15])
                 ->whereNotIn('user_id', $this->getAdminUserIds())
                 ->inRandomOrder()
@@ -366,6 +372,7 @@ abstract class AccountTestCase extends TestCase
             ->where('galaxy', $this->planetService->getPlanetCoordinates()->galaxy)
             ->where('galaxy', '<=', $maxGalaxies)
             ->where('planet_type', PlanetType::Moon)
+            ->where('destroyed', 0)
             ->whereBetween('system', [$this->planetService->getPlanetCoordinates()->system - 15, $this->planetService->getPlanetCoordinates()->system + 15])
             ->whereNotIn('user_id', $this->getAdminUserIds())
             ->inRandomOrder()
@@ -386,6 +393,7 @@ abstract class AccountTestCase extends TestCase
                 ->where('galaxy', $this->planetService->getPlanetCoordinates()->galaxy)
                 ->where('galaxy', '<=', $maxGalaxies)
                 ->where('planet_type', PlanetType::Moon)
+                ->where('destroyed', 0)
                 ->whereBetween('system', [$this->planetService->getPlanetCoordinates()->system - 15, $this->planetService->getPlanetCoordinates()->system + 15])
                 ->whereNotIn('user_id', $this->getAdminUserIds())
                 ->inRandomOrder()

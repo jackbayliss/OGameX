@@ -452,10 +452,10 @@
                                     $shipTooltipContent .= $shipName . ': ' . $quantity . '<br/>';
                                 }
                             } else {
-                                $shipTooltipContent .= 'No ships in wreck field';
+                                $shipTooltipContent .= __('t_ingame.layout.no_ships_in_wreck');
                             }
                         } else {
-                            $shipTooltipContent .= 'No wreck field available';
+                            $shipTooltipContent .= __('t_ingame.layout.no_wreck_available');
                         }
                     @endphp
                     @php
@@ -1463,7 +1463,7 @@ However, the Space Dock's engineers think that some of the remains can be salvag
 
                 function openPlanetRenameGiveupBox() {
                     openOverlay("{{ route('planetabandon.overlay') }}", {
-                        title: "Abandon\/Rename {{ $currentPlanet->getPlanetName() }}",
+                        title: "{{ __('t_ingame.overview.abandon_rename_modal', ['planet_name' => $currentPlanet->getPlanetName()]) }}",
                         'class': "planetRenameOverlay"
                     });
                 }
@@ -1903,6 +1903,7 @@ However, the Space Dock's engineers think that some of the remains can be salvag
             <a href="{{ route('language.switch', ['lang' => 'en']) }}" @if($localeActive === 'en') class="bold" @endif>EN</a>|
             <a href="{{ route('language.switch', ['lang' => 'it']) }}" @if($localeActive === 'it') class="bold" @endif>IT</a>|
             <a href="{{ route('language.switch', ['lang' => 'nl']) }}" @if($localeActive === 'nl') class="bold" @endif>NL</a>|
+            <a href="{{ route('language.switch', ['lang' => 'fr']) }}" @if($localeActive === 'fr') class="bold" @endif>FR</a>|
             <a href="{{ route('language.switch', ['lang' => 'zh-TW']) }}" @if($localeActive === 'zh-TW') class="bold" @endif>繁體中文</a>|
             <a href="#">{{ __('t_ingame.layout.board') }}</a>|
             <a class="overlay" href="{{ route('rules.ajax') }}"

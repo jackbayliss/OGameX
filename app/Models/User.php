@@ -2,9 +2,9 @@
 
 namespace OGame\Models;
 
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -41,6 +41,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon|null $updated_at
  * @property int|null $planet_current
  * @property int $dark_matter
+ * @property int $tactical_retreat_ratio
  * @property Carbon|null $dark_matter_last_regen
  * @property bool $vacation_mode
  * @property Carbon|null $vacation_mode_activated_at

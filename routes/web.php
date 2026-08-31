@@ -86,6 +86,7 @@ Route::middleware(['auth', 'banned', 'globalgame', 'locale', 'firstlogin'])->gro
     Route::post('/facilities/downgrade', [FacilitiesController::class, 'downgradeBuildRequest'])->name('facilities.downgrade');
     Route::post('/facilities/cancel-buildrequest', [FacilitiesController::class, 'cancelBuildRequest'])->name('facilities.cancelbuildrequest');
     Route::post('/ajax/facilities/halve-building', [FacilitiesController::class, 'halveBuilding'])->name('facilities.halvebuilding');
+    Route::post('/ajax/facilities/complete-building', [FacilitiesController::class, 'completeBuilding'])->name('facilities.completebuilding');
     Route::post('/ajax/facilities/start-repairs', [FacilitiesController::class, 'startRepairs'])->name('facilities.startrepairs');
     Route::post('/ajax/facilities/complete-repairs', [FacilitiesController::class, 'completeRepairs'])->name('facilities.completerepairs');
     Route::post('/ajax/facilities/burn-wreck-field', [FacilitiesController::class, 'burnWreckField'])->name('facilities.burnwreckfield');
@@ -124,6 +125,7 @@ Route::middleware(['auth', 'banned', 'globalgame', 'locale', 'firstlogin'])->gro
     Route::post('/ajax/fleet/dispatch/send-fleet', [FleetController::class, 'dispatchSendFleet'])->name('fleet.dispatch.sendfleet');
     Route::post('/ajax/fleet/dispatch/send-mini-fleet', [FleetController::class, 'dispatchSendMiniFleet'])->name('fleet.dispatch.sendminifleet');
     Route::post('/ajax/fleet/dispatch/recall-fleet', [FleetController::class, 'dispatchRecallFleet'])->name('fleet.dispatch.recallfleet');
+    Route::post('/ajax/fleet/tactical-retreat', [FleetController::class, 'updateTacticalRetreat'])->name('fleet.tacticalretreat');
 
     // ACS Fleet Unions
     Route::post('/ajax/fleet/union/create', [FleetController::class, 'createUnion'])->name('fleet.union.create');
